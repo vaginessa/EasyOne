@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView android:layout_height="wrap_content"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/permission"
     android:layout_width="wrap_content"
-    android:text="Hello World!"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
+    android:layout_margin="16dp"
+    android:drawablePadding="16dp"
+    android:textAlignment="center"
     android:textSize="18sp"
-    android:textStyle="italic"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    android:textStyle="italic" />
