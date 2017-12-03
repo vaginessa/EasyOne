@@ -43,11 +43,9 @@ public class MainActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (requestCode == PermissionUtils.OVERLAY_REQUEST_CODE) {
             if (Settings.canDrawOverlays(this)) {
                 initActivity();
             }
-        }
     }
 
     @Override

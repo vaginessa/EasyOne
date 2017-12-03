@@ -12,7 +12,7 @@ import android.provider.Settings;
 
 class PermissionUtils {
 
-    static final int OVERLAY_REQUEST_CODE = 0;
+    private static final int OVERLAY_REQUEST_CODE = 0;
     static final int CONTACT_REQUEST_CODE = 1;
     static final int CALL_REQUEST_CODE = 2;
 
