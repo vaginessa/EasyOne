@@ -13,6 +13,7 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 
     TextView rationale;
+    Intent killingIntent;
 
     private void initActivity() {
 
@@ -25,8 +26,17 @@ public class MainActivity extends Activity {
             switchPermission(PermissionUtils.CONTACT_REQUEST_CODE);
 
         } else {
-
+            startOverlay();
         }
+    }
+
+    private void startOverlay() {
+        Intent notificationIntent = new Intent(MainActivity.this, OverlayService.class);
+        startService(notificationIntent);
+
+        killingIntent = new Intent("addGesturesOverlay");
+        sendBroadcast(killingIntent);
+        finish();
     }
 
     @Override
@@ -43,9 +53,9 @@ public class MainActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-            if (Settings.canDrawOverlays(this)) {
-                initActivity();
-            }
+        if (Settings.canDrawOverlays(this)) {
+            initActivity();
+        }
     }
 
     @Override
@@ -67,9 +77,9 @@ public class MainActivity extends Activity {
 
                     Toast.makeText(this, "thankyou:)", Toast.LENGTH_SHORT)
                             .show();
-                    finish();
+                    startOverlay();
                 }
-            break;
+                break;
         }
     }
 

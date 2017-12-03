@@ -20,6 +20,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".OverlayService"
+            android:exported="false">
+
+        </service>
+        <receiver
+            android:name=".BroadcastHorn"
+            android:enabled="true"
+            android:exported="true"
+            android:label="RestartServiceWhenStopped">
+            <intent-filter>
+                <action android:name="dontKillMe" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
