@@ -2,8 +2,10 @@ package com.enrico.easyone;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,9 +14,8 @@ public class MainActivity extends Activity {
 
     TextView rationale;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    private void initActivity() {
+
         setContentView(R.layout.activity_main);
 
         if (checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
@@ -29,6 +30,27 @@ public class MainActivity extends Activity {
     }
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (Settings.canDrawOverlays(this)) {
+            initActivity();
+        } else {
+            PermissionUtils.askDrawOverlayPermission(this);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == PermissionUtils.OVERLAY_REQUEST_CODE) {
+            if (Settings.canDrawOverlays(this)) {
+                initActivity();
+            }
+        }
+    }
+
+    @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 
         switch (requestCode) {
@@ -37,7 +59,6 @@ public class MainActivity extends Activity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                     switchPermission(PermissionUtils.CALL_REQUEST_CODE);
-
                 }
             }
             break;
@@ -50,7 +71,7 @@ public class MainActivity extends Activity {
                             .show();
                     finish();
                 }
-                break;
+            break;
         }
     }
 
