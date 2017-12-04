@@ -58,3 +58,12 @@ WindowManager.LayoutParams params = new WindowManager.LayoutParams(dragWidth, Wi
 //change this through preferences
 params.gravity = Gravity.START;
 ```
+
+
+NOTES:
+
+**Why is there a broadcast receiver?:** The broadcast receiver is used to keep the service alive! It is registered when the service starts. When Android destroys the service, the receiver will receive a broadcast and the service will be restarted.
+
+**Why is there a notification on the status bar?:** This is used to keep the service alive and to avoid that Android kills it!
+
+**How to dynamically change the bar's settings:** After You have implemented a Preference activity use actions in conjunction with a broadcast receiver. For a working example check this: https://github.com/enricocid/Chat-Head-Service
