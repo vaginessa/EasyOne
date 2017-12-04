@@ -46,7 +46,7 @@ WindowManager.LayoutParams params = new WindowManager.LayoutParams(**WIDTH (drag
 
 **params.gravity** = the gravity of the bar. Possible values: Gravity.START, GRAVITY.END;
 
-**EXAMPLE
+EXAMPLE
 
 ``` java
 
