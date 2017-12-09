@@ -18,13 +18,13 @@ class PermissionUtils {
 
     static void requestCallPermission(Activity activity) {
         activity.requestPermissions(new String[]{Manifest.permission.CALL_PHONE}
-                , PermissionUtils.CALL_REQUEST_CODE);
+                , CALL_REQUEST_CODE);
     }
 
     static void requestContactPermission(Activity activity) {
 
         activity.requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}
-                , PermissionUtils.CONTACT_REQUEST_CODE);
+                , CONTACT_REQUEST_CODE);
     }
 
     static void askDrawOverlayPermission(Activity activity) {
